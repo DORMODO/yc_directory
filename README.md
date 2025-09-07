@@ -53,7 +53,7 @@ A modern startup directory platform where entrepreneurs can pitch their ideas, c
 
 1. **Clone the repository**
    ```bash
-   git clone https://github.com/yourusername/yc_directory.git
+   git clone https://github.com/DORMODO/yc_directory.git
    cd yc_directory
    ```
 
@@ -88,13 +88,7 @@ A modern startup directory platform where entrepreneurs can pitch their ideas, c
    NEXT_PUBLIC_SENTRY_DSN=your_sentry_dsn
    ```
 
-4. **Set up Sanity Studio**
-   ```bash
-   npm run sanity:dev
-   ```
-   Visit `http://localhost:3333` to configure your content types.
-
-5. **Run the development server**
+4. **Run the development server**
    ```bash
    npm run dev
    # or
@@ -103,68 +97,8 @@ A modern startup directory platform where entrepreneurs can pitch their ideas, c
    pnpm dev
    ```
 
-6. **Open your browser**
+5. **Open your browser**
    Navigate to [http://localhost:3000](http://localhost:3000)
-
-## 📁 Project Structure
-
-```
-yc_directory/
-├── app/                    # Next.js App Router
-│   ├── (root)/            # Route groups
-│   │   ├── page.tsx       # Home page
-│   │   ├── startup/       # Startup pages
-│   │   └── user/          # User profile pages
-│   ├── api/               # API routes
-│   ├── globals.css        # Global styles
-│   └── layout.tsx         # Root layout
-├── components/            # React components
-│   ├── ui/               # Reusable UI components
-│   ├── StartupCard.tsx   # Startup display component
-│   ├── StartupForm.tsx   # Startup creation form
-│   └── Navbar.tsx        # Navigation component
-├── lib/                  # Utility functions
-│   ├── actions.ts        # Server actions
-│   ├── utils.ts          # Helper functions
-│   ├── validation.ts     # Zod schemas
-│   └── markdown.ts       # Markdown rendering
-├── sanity/               # Sanity CMS configuration
-│   ├── lib/              # Sanity client setup
-│   ├── schemaTypes/      # Content schemas
-│   └── structure.config.ts
-└── public/               # Static assets
-```
-
-## 🔧 Available Scripts
-
-```bash
-# Development
-npm run dev          # Start development server with Turbopack
-npm run build        # Build for production
-npm run start        # Start production server
-npm run lint         # Run ESLint
-
-# Sanity CMS
-npm run sanity:dev   # Start Sanity Studio
-npm run sanity:build # Build Sanity Studio
-npm run sanity:deploy # Deploy Sanity Studio
-
-# Utilities
-npm run clean        # Clean build artifacts
-```
-
-## 🎨 Customization
-
-### Styling
-The project uses a custom design system built on Tailwind CSS. Key files:
-- `app/globals.css` - Design tokens and component styles
-- `components/ui/` - Reusable UI components
-- `tailwind.config.js` - Tailwind configuration
-
-### Content Types
-Modify Sanity schemas in `sanity/schemaTypes/`:
-- `startup.ts` - Startup pitch schema
-- `author.ts` - User profile schema
 
 ### Authentication
 Configure providers in `auth.ts`:
@@ -179,28 +113,12 @@ Configure providers in `auth.ts`:
 3. Add environment variables in Vercel dashboard
 4. Deploy!
 
-### Other Platforms
-The app can be deployed to any platform that supports Next.js:
-- Netlify
-- Railway
-- DigitalOcean App Platform
-- AWS Amplify
-
-## 🔒 Security Features
-
-- **XSS Protection** - All user content is sanitized
-- **CSRF Protection** - Built-in NextAuth.js protection
-- **Input Validation** - Zod schema validation
-- **Environment Variables** - Secure configuration management
-- **Rate Limiting** - API rate limiting (recommended for production)
-
 ## 📊 Performance
 
 - **Turbopack** - Fast development builds
 - **Image Optimization** - Next.js automatic image optimization
 - **Code Splitting** - Automatic route-based code splitting
 - **Font Optimization** - Local font loading
-- **Bundle Analysis** - Use `npm run analyze` to analyze bundle size
 
 ## 🤝 Contributing
 
@@ -221,18 +139,5 @@ The app can be deployed to any platform that supports Next.js:
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
-## 🙏 Acknowledgments
-
-- [Next.js](https://nextjs.org/) - The React framework
-- [Sanity](https://www.sanity.io/) - The headless CMS
-- [Tailwind CSS](https://tailwindcss.com/) - The CSS framework
-- [Radix UI](https://www.radix-ui.com/) - The component primitives
-- [Lucide](https://lucide.dev/) - The icon library
-
-## 📞 Support
-
-If you have any questions or need help:
-- Open an issue on GitHub
-- Check the documentation
 
 
