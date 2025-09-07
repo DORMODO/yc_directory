@@ -1,0 +1,408 @@
+@import "tailwindcss";
+@custom-variant dark (&:is(.dark *));
+
+@import "tailwindcss-animated";
+@plugin "@tailwindcss/typography";
+
+/* First: Define your custom design tokens in @theme */
+@theme {
+  /* Your custom design system */
+  --breakpoint-xs: 475px;
+
+  /* Your custom colors with unique names */
+  --color-brand-primary: #ee2b69;
+  --color-brand-primary-100: #ffe8f0;
+  --color-brand-secondary: #fbe843;
+
+  --color-neutral-black: #000000;
+  --color-neutral-black-100: #333333;
+  --color-neutral-black-200: #141413;
+  --color-neutral-black-300: #7d8087;
+
+  --color-neutral-white: #ffffff;
+  --color-neutral-white-100: #f7f7f7;
+
+  --font-work-sans: "Work Sans", sans-serif;
+
+  /* Your custom radius */
+  --radius-custom: 0.5rem;
+  --radius-lg: var(--radius-custom);
+  --radius-md: calc(var(--radius-custom) - 2px);
+  --radius-sm: calc(var(--radius-custom) - 4px);
+
+  /* Your shadows */
+  --shadow-100: 2px 2px 0px 0px rgb(0, 0, 0);
+  --shadow-200: 2px 2px 0px 2px rgb(0, 0, 0);
+  --shadow-300: 2px 2px 0px 2px var(--color-brand-primary);
+
+  /* Map your theme to shadcn tokens for seamless integration */
+  --radius: var(--radius-custom);
+  --primary: var(--color-brand-primary);
+  --secondary: var(--color-brand-secondary);
+
+  /* Create Tailwind-compatible color mappings */
+  --color-primary: var(--color-brand-primary);
+  --color-primary-100: var(--color-brand-primary-100);
+  --color-secondary: var(--color-brand-secondary);
+  --color-black: var(--color-neutral-black);
+  --color-black-100: var(--color-neutral-black-100);
+  --color-black-200: var(--color-neutral-black-200);
+  --color-black-300: var(--color-neutral-black-300);
+  --color-white: var(--color-neutral-white);
+  --color-white-100: var(--color-neutral-white-100);
+
+  /* Keep the rest of shadcn's design tokens as fallbacks */
+  --background: oklch(1 0 0);
+  --foreground: oklch(0.129 0.042 264.695);
+  --card: oklch(1 0 0);
+  --card-foreground: oklch(0.129 0.042 264.695);
+  --popover: oklch(1 0 0);
+  --popover-foreground: oklch(0.129 0.042 264.695);
+  --primary-foreground: oklch(0.984 0.003 247.858);
+  --secondary-foreground: oklch(0.208 0.042 265.755);
+  --muted: oklch(0.968 0.007 247.896);
+  --muted-foreground: oklch(0.554 0.046 257.417);
+  --accent: oklch(0.968 0.007 247.896);
+  --accent-foreground: oklch(0.208 0.042 265.755);
+  --destructive: oklch(0.577 0.245 27.325);
+  --border: oklch(0.929 0.013 255.508);
+  --input: oklch(0.929 0.013 255.508);
+  --ring: oklch(0.704 0.04 256.788);
+  --chart-1: oklch(0.646 0.222 41.116);
+  --chart-2: oklch(0.6 0.118 184.704);
+  --chart-3: oklch(0.398 0.07 227.392);
+  --chart-4: oklch(0.828 0.189 84.429);
+  --chart-5: oklch(0.769 0.188 70.08);
+  --sidebar: oklch(0.984 0.003 247.858);
+  --sidebar-foreground: oklch(0.129 0.042 264.695);
+  --sidebar-primary: oklch(0.208 0.042 265.755);
+  --sidebar-primary-foreground: oklch(0.984 0.003 247.858);
+  --sidebar-accent: oklch(0.968 0.007 247.896);
+  --sidebar-accent-foreground: oklch(0.208 0.042 265.755);
+  --sidebar-border: oklch(0.929 0.013 255.508);
+  --sidebar-ring: oklch(0.704 0.04 256.788);
+
+  /* Create the Tailwind color mappings for your theme */
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+
+  /* Radius mappings */
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+}
+
+/* Dark mode overrides */
+.dark {
+  --background: oklch(0.129 0.042 264.695);
+  --foreground: oklch(0.984 0.003 247.858);
+  --card: oklch(0.208 0.042 265.755);
+  --card-foreground: oklch(0.984 0.003 247.858);
+  --popover: oklch(0.208 0.042 265.755);
+  --popover-foreground: oklch(0.984 0.003 247.858);
+  --primary: oklch(0.929 0.013 255.508);
+  --primary-foreground: oklch(0.208 0.042 265.755);
+  --secondary: oklch(0.279 0.041 260.031);
+  --secondary-foreground: oklch(0.984 0.003 247.858);
+  --muted: oklch(0.279 0.041 260.031);
+  --muted-foreground: oklch(0.704 0.04 256.788);
+  --accent: oklch(0.279 0.041 260.031);
+  --accent-foreground: oklch(0.984 0.003 247.858);
+  --destructive: oklch(0.704 0.191 22.216);
+  --border: oklch(1 0 0 / 10%);
+  --input: oklch(1 0 0 / 15%);
+  --ring: oklch(0.551 0.027 264.364);
+  --chart-1: oklch(0.488 0.243 264.376);
+  --chart-2: oklch(0.696 0.17 162.48);
+  --chart-3: oklch(0.769 0.188 70.08);
+  --chart-4: oklch(0.627 0.265 303.9);
+  --chart-5: oklch(0.645 0.246 16.439);
+  --sidebar: oklch(0.208 0.042 265.755);
+  --sidebar-foreground: oklch(0.984 0.003 247.858);
+  --sidebar-primary: oklch(0.488 0.243 264.376);
+  --sidebar-primary-foreground: oklch(0.984 0.003 247.858);
+  --sidebar-accent: oklch(0.279 0.041 260.031);
+  --sidebar-accent-foreground: oklch(0.984 0.003 247.858);
+  --sidebar-border: oklch(1 0 0 / 10%);
+  --sidebar-ring: oklch(0.551 0.027 264.364);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+
+@utility pattern {
+  background-image: linear-gradient(
+    to right,
+    transparent 49.5%,
+    rgba(251, 232, 67, 0.2) 49.5%,
+    rgba(251, 232, 67, 0.6) 50.5%,
+    transparent 50.5%
+  );
+  background-size: 5% 100%;
+  background-position: center;
+  background-repeat: repeat-x;
+}
+
+@utility tag-tri {
+  @apply before:absolute before:top-2 before:left-2 before:border-t-[10px] before:border-r-[10px] before:border-t-black before:border-r-transparent before:content-[''];
+  @apply after:absolute after:right-2 after:bottom-2 after:border-b-[10px] after:border-l-[10px] after:border-b-black after:border-l-transparent after:content-[''];
+}
+
+@layer utilities {
+  .flex-between {
+    @apply flex items-center justify-between;
+  }
+
+  .sr-only {
+    @apply absolute w-px h-px p-0 -m-px overflow-hidden whitespace-nowrap border-0;
+    clip: rect(0, 0, 0, 0);
+  }
+
+  .text-30-extrabold {
+    @apply text-[30px] font-extrabold text-white;
+  }
+
+  .text-30-bold {
+    @apply text-[30px] font-bold text-black;
+  }
+
+  .text-30-semibold {
+    @apply text-[30px] font-semibold text-black;
+  }
+
+  .text-26-semibold {
+    @apply text-[26px] font-semibold text-black;
+  }
+
+  .text-24-black {
+    @apply text-[24px] font-black text-black;
+  }
+
+  .text-20-medium {
+    @apply text-[20px] font-medium text-black;
+  }
+
+  .text-16-medium {
+    @apply text-[16px] font-medium text-black;
+  }
+
+  .text-14-normal {
+    @apply text-white-100/80 text-sm font-normal;
+  }
+}
+
+@layer components {
+  /* containers and components */
+
+  .pink_container {
+    @apply bg-primary pattern flex min-h-[530px] w-full flex-col items-center justify-center px-6 py-10;
+  }
+
+  .tag {
+    @apply bg-secondary font-work-sans tag-tri relative rounded-sm px-6 py-3 font-bold uppercase;
+  }
+
+  .heading {
+    @apply font-work-sans my-5 max-w-5xl bg-black px-6 py-3 text-center text-[36px] leading-[46px] font-extrabold text-white uppercase sm:text-[54px] sm:leading-[64px];
+  }
+
+  .sub-heading {
+    @apply max-w-2xl text-center text-[20px] font-medium break-words text-white;
+  }
+
+  .section_container {
+    @apply mx-auto max-w-7xl px-6 py-10;
+  }
+
+  .card_grid {
+    @apply grid gap-5 sm:grid-cols-2 md:grid-cols-3;
+  }
+
+  .card_grid-sm {
+    @apply grid gap-5 sm:grid-cols-2;
+  }
+
+  .no-result {
+    @apply text-black-100 text-sm font-normal;
+  }
+
+  /* profile */
+  .profile_container {
+    @apply mx-auto flex w-full max-w-7xl flex-col gap-10 px-6 pt-20 pb-10 lg:flex-row;
+  }
+
+  .profile_card {
+    @apply bg-primary shadow-100 relative z-0 flex h-fit w-80 flex-col items-center justify-center rounded-[30px] border-[5px] border-black px-6 pt-20 pb-6 max-lg:w-full;
+  }
+
+  .profile_title {
+    @apply shadow-100 absolute -top-9 w-11/12 rounded-[20px] border-[5px] border-black bg-white px-5 py-3;
+    @apply after:absolute after:-top-1 after:right-0 after:-z-[1] after:h-[60px] after:w-full after:-skew-y-6 after:rounded-[20px] after:bg-black after:content-[''];
+    @apply before:absolute before:-bottom-1 before:left-0 before:-z-[1] before:h-[60px] before:w-full before:-skew-y-6 before:rounded-[20px] before:bg-black before:content-[''];
+  }
+
+  .profile_image {
+    @apply rounded-full border-[3px] border-black object-cover;
+  }
+
+  /* idea details */
+  .divider {
+    @apply mx-auto my-10 max-w-4xl border-dotted bg-zinc-400;
+  }
+
+  .view_skeleton {
+    @apply fixed right-3 bottom-3 h-10 w-24 rounded-lg bg-zinc-400;
+  }
+
+  /* navbar */
+  .avatar {
+    @apply !rounded-full !bg-none !p-0 !drop-shadow-md;
+  }
+
+  .avatar:focus-visible {
+    @apply !ring-0;
+  }
+
+  .dropdown-menu {
+    @apply !w-56 !rounded-2xl !border-[5px] !border-black !bg-white !p-5;
+  }
+
+  .login {
+    @apply !shadow-100 !font-work-sans !relative !border-[5px] !border-black !bg-white !py-4 !font-medium !text-black !transition-all !duration-500;
+  }
+
+  .login:hover {
+    @apply !shadow-none;
+  }
+
+  /* searchform */
+  .search-form {
+    @apply mt-8 flex min-h-[80px] w-full max-w-3xl flex-row items-center gap-5 rounded-[80px] border-[5px] border-black bg-white px-5 text-[24px];
+  }
+
+  .search-input {
+    @apply placeholder:text-black-100 h-auto w-full flex-1 font-bold outline-none placeholder:font-semibold;
+  }
+
+  .search-btn {
+    @apply !flex !size-[50px] !items-center !justify-center !rounded-full !bg-black;
+  }
+
+  /* startupcard */
+  .startup-card {
+    @apply shadow-200 hover:border-primary hover:shadow-300 hover:bg-primary-100 rounded-[22px] border-[5px] border-black bg-white px-5 py-6 transition-all duration-500;
+  }
+
+  .startup-card_date {
+    @apply bg-primary-100 group-hover:bg-white-100 rounded-full px-4 py-2 text-[16px] font-medium;
+  }
+
+  .startup-card_desc {
+    @apply text-black-100 my-3 line-clamp-2 text-[16px] font-normal break-all;
+  }
+
+  .startup-card_img {
+    @apply h-[164px] w-full rounded-[10px] object-cover;
+  }
+
+  .startup-card_btn {
+    @apply !bg-black-200 !rounded-full !px-5 !py-3 !text-[16px] !font-medium !text-white;
+  }
+
+  .startup-card_skeleton {
+    @apply h-96 w-full rounded-[22px] bg-zinc-400;
+  }
+
+  /* startupform */
+  .startup-form {
+    @apply mx-auto my-10 max-w-2xl space-y-8 bg-white px-6;
+  }
+
+  .startup-form_label {
+    @apply text-[18px] font-bold text-black uppercase;
+  }
+
+  .startup-form_input {
+    @apply !mt-3 !rounded-full !border-[3px] !border-black !px-5 !py-7 !text-[18px] !font-semibold !text-black;
+  }
+
+  .startup-form_input::placeholder {
+    @apply !text-black-300;
+  }
+
+  .startup-form_textarea {
+    @apply !mt-3 !rounded-[20px] !border-[3px] !border-black !p-5 !text-[18px] !font-semibold !text-black;
+  }
+
+  .startup-form_textarea::placeholder {
+    @apply !text-black-300;
+  }
+
+  .startup-form_error {
+    @apply mt-2 ml-5 text-red-500;
+  }
+
+  .startup-form_editor {
+    @apply !mt-3 !border-[3px] !border-black !text-[18px] !font-semibold !text-black;
+  }
+
+  .startup-form_editor::placeholder {
+    @apply !text-black-300;
+  }
+
+  .startup-form_btn {
+    @apply !bg-primary !min-h-[70px] !w-full !rounded-full !border-[4px] !border-black !p-5 !text-[18px] !font-bold;
+  }
+
+  /* view */
+  .view-container {
+    @apply fixed left-3 bottom-3 mt-5 flex items-center justify-end;
+  }
+
+  .view-text {
+    @apply bg-primary-100 rounded-lg px-4 py-2 text-[16px] font-medium capitalize;
+  }
+
+  .category-tag {
+    @apply bg-primary-100 rounded-full px-4 py-2 text-[16px] font-medium;
+  }
+
+  /* external component styles */
+  .w-md-editor-toolbar {
+    padding: 10px !important;
+  }
+}
